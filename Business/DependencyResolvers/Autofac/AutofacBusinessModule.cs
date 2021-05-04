@@ -17,11 +17,11 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ProductManager>().As<IProductService>();
-            builder.RegisterType<EfProductDal>().As<IProductDal>();
+            builder.RegisterType<EfOperationClaimDal>().As<IOperationClaimDal>();
+            builder.RegisterType<OperationClaimManager>().As<IOperationClaimService>();
 
-            builder.RegisterType<CategoryManager>().As<ICategoryService>();
-            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
+            builder.RegisterType<EfPostDal>().As<IPostDal>();
+            builder.RegisterType<PostManager>().As<IPostService>();
 
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
