@@ -40,9 +40,9 @@ namespace Business.Concrete
             return new SuccessDataResult<UserOperationClaim>(_userOperationClaimDal.Get(u=>u.Id == id));
         }
 
-        public IDataResult<UserOperationClaim> GetByUserId(int userId)
+        public IDataResult<List<UserOperationClaim>> GetByUserId(int userId)
         {
-            return new SuccessDataResult<UserOperationClaim>(_userOperationClaimDal.Get(u => u.UserId == userId));
+            return new SuccessDataResult<List<UserOperationClaim>>(_userOperationClaimDal.GetList(u => u.UserId == userId));
         }
 
         public IResult Update(UserOperationClaim userOperationClaim)

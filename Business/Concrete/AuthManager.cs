@@ -15,11 +15,13 @@ namespace Business.Concrete
     {
         private IUserService _userService;
         private ITokenHelper _tokenHelper;
+        private IUserOperationClaimService _userOperationClaimService;
 
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper)
+        public AuthManager(IUserService userService, ITokenHelper tokenHelper, IUserOperationClaimService userOperationClaimService)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
+            _userOperationClaimService = userOperationClaimService;
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
@@ -47,12 +49,12 @@ namespace Business.Concrete
                 return new ErrorDataResult<User>(Messages.UserNotFound);
             }
 
-            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password,userToCheck.PasswordHash,userToCheck.PasswordSalt))
+            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password,userToCheck.Data.PasswordHash,userToCheck.Data.PasswordSalt))
             {
                 return new ErrorDataResult<User>(Messages.PasswordError);
             }
 
-            return new SuccessDataResult<User>(userToCheck,Messages.SuccessfulLogin);
+            return new SuccessDataResult<User>(userToCheck.Data,Messages.SuccessfulLogin);
         }
 
         public IResult UserExists(string email)
