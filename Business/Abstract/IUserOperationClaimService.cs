@@ -14,6 +14,7 @@ namespace Business.Abstract
         IResult Add(UserOperationClaim userOperationClaim);
         IResult Update(UserOperationClaim userOperationClaim);
         IResult Delete(UserOperationClaim userOperationClaim);
+        IResult CheckIfItsAdmin(int userId);
 
     }
 }

@@ -54,6 +54,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("checkifitsadmin")]
+        public IActionResult CheckIfItsAdmin(int userId)
+        {
+            var result = _userOperationClaimService.CheckIfItsAdmin(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return Ok(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(UserOperationClaim userOperationClaim)
         {
