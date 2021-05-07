@@ -24,10 +24,10 @@ namespace Business.Concrete
             _userOperationClaimService = userOperationClaimService;
         }
 
-        public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
+        public IDataResult<User> Register(UserForRegisterDto userForRegisterDto)
         {
             byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(password,out passwordHash,out passwordSalt);
+            HashingHelper.CreatePasswordHash(userForRegisterDto.Password,out passwordHash,out passwordSalt);
             var user = new User
             {
                 Email = userForRegisterDto.Email,
@@ -59,7 +59,8 @@ namespace Business.Concrete
 
         public IResult UserExists(string email)
         {
-            if (_userService.GetByMail(email)!=null)
+            var result = _userService.GetByMail(email);
+            if (result.Data != null)
             {
                 return new ErrorResult(Messages.UserAlreadyExists);
             }
@@ -70,7 +71,7 @@ namespace Business.Concrete
         {
             var claims = _userService.GetClaims(user);
             var accessToken = _tokenHelper.CreateToken(user, claims);
-            return new SuccessDataResult<AccessToken>(accessToken,Messages.AccessTokenCreated);
+            return new SuccessDataResult<AccessToken>(accessToken,Messages.UserRegistered);
         }
     }
 }
