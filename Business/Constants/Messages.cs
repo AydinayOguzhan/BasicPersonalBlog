@@ -13,5 +13,7 @@
 
         public static string Successful = "Başarılı";
         public static string Unsuccessful = "Başarısız";
+
+        public static string UserUpdated = "Kullanıcı güncellendi";
     }
 }
