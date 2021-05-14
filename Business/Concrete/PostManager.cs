@@ -35,6 +35,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Post>>(_postDal.GetList(), Messages.Successful);
         }
 
+        public IDataResult<List<Post>> GetAllNDaysBefore(DateTime date)
+        {
+            return new SuccessDataResult<List<Post>>(_postDal.GetList(p => p.PostDate >= date));
+        }
+
         public IDataResult<Post> GetById(int id)
         {
             return new SuccessDataResult<Post>(_postDal.Get(p => p.Id == id), Messages.Successful);

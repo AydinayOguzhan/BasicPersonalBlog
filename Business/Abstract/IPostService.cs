@@ -9,6 +9,7 @@ namespace Business.Abstract
     public interface IPostService
     {
         IDataResult<List<Post>> GetAll();
+        IDataResult<List<Post>> GetAllNDaysBefore(DateTime date);
         IDataResult<Post> GetById(int id);
         IResult Add(Post post);
         IResult Update(Post post);

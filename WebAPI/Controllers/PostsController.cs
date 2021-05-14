@@ -31,6 +31,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getallndaysbefore")]
+        public IActionResult GetAllNDaysBefore(DateTime date)
+        {
+            var result = _postService.GetAllNDaysBefore(date);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {

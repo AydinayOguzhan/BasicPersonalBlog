@@ -9,6 +9,7 @@ namespace Entities.Concrete
     {
         public int Id { get; set; }
         public string PostHeader { get; set; }
+        public string PostSummary { get; set; }
         public string PostBody { get; set; }
         public DateTime PostDate { get; set; }
     }
