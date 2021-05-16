@@ -17,6 +17,9 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<EfHomePagePostDateDal>().As<IHomePagePostDateDal>();
+            builder.RegisterType<HomePagePostDateManager>().As<IHomePagePostDateService>();
+
             builder.RegisterType<EfUserOperationClaimDal>().As<IUserOperationClaimDal>();
             builder.RegisterType<UserOperationClaimManager>().As<IUserOperationClaimService>();
 
